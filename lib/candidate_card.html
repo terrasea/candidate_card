@@ -1,0 +1,128 @@
+<dom-module id="candidate-card">
+    <template>
+        <style>
+            :host {
+                display: inline-block;
+                font-family: "Open Sans",Helvetica,Arial,sans-serif;
+                /*width: 100%;*/
+                /*--paper-card-header-image: {*/
+                    /*width: 115px;*/
+                    /*height: 115px;*/
+                     /*display: inline;*/
+                    /*top: 250px;*/
+                /*}*/
+
+                /*--paper-card-header-image-text: {*/
+                    /*font-size: xx-large;*/
+                    /*left: 118px;*/
+                    /*right: 0;*/
+                    /*color: #9acd32;*/
+                    /*/!*width: 230px;*!/*/
+                /*}*/
+
+                /*--paper-card-content: {*/
+                    /*left: 118px;*/
+                 /*}*/
+            }
+
+            paper-card {
+                width: 100%;
+                /*height: 300px;*/
+                /*position: inherit;*/
+            }
+
+
+
+            #picture {
+                width: 115px;
+                height: 115px;
+                vertical-align: middle;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                border-radius: 50%;
+            }
+
+            #name {
+                color: #9acd32;
+                /*font-family: 'NationalBookItalic';*/
+                font-style: italic;
+                font-weight: bolder;
+            }
+
+            @media (min-width: 805px) {
+                #content {
+                    /*@apply(--layout-horizontal)*/
+                }
+
+                #text {
+                    margin-left: 0;
+                    /*@apply(--layout-flex)*/
+                }
+
+                #div-picture {
+                    /*width: 150px;*/
+                    /*@apply(--layout-horizontal);*/
+                    /*@apply(--layout-flex)*/
+                    /*@apply(--layout-center);*/
+                }
+            }
+
+            @media (min-width: 1000px) {
+                #text {
+                    margin-left: 0;
+                   /*@apply(- -layout-flex-2)*/
+                }
+
+                #div-picture {
+                    /*width: 150px;*/
+                    /*@apply(--layout-horizontal);*/
+                    /*@apply(--layout-flex)*/
+                    /*@apply(--layout-center);*/
+                }
+            }
+
+            paper-button {
+                text-transform: none;
+                color: #9acd32;
+                left: 0;
+            }
+
+            paper-button iron-icon {
+                background-color: #9acd32;
+                color: white;
+                border-radius: 50%;
+            }
+            #snippet {
+                font-weight: bolder;
+            }
+        </style>
+        <iron-media-query query="(max-width: 500px) and (orientation: portrait)" query-matches="{{phoneScreenPortrait}}"></iron-media-query>
+        <iron-media-query query="(max-width: 599px) and (orientation: landscape)" query-matches="{{phoneScreenLandscape}}"></iron-media-query>
+        <iron-media-query query="(min-width: 501px) and (max-width: 980px) and (orientation: portrait)" query-matches="{{tabletScreenPortrait}}"></iron-media-query>
+        <iron-media-query query="(min-width: 600px) and (max-width: 980px) and (orientation: landscape)" query-matches="{{tabletScreenLandscape}}"></iron-media-query>
+        <iron-media-query query="(min-width: 981px)" query-matches="{{desktopScreen}}"></iron-media-query>
+        <paper-card>
+            <div id="content" class="card-content layout horizontal">
+                <div id="div-picture" class="flex"><img id="picture" class="picture" src="[[imageUrl]]"></div>
+                <div id="text" class="flex-2 layout vertical">
+                    <h1 id="name">{{candidateName}}</h1>
+                    <div id="snippet" class="flex-3"><content></content></div>
+
+                    <div>
+                        <template is="dom-if" if="{{!noLink}}">
+
+                                <paper-button class="flex" on-click="followLink">
+                                    <iron-icon icon="icons:chevron-right"></iron-icon>
+                                    <span>View More</span>
+                                </paper-button>
+
+                        </template>
+                    </div>
+
+                </div>
+            </div>
+
+        </paper-card>
+    </template>
+    <script type="application/dart" src="candidate_card.dart"></script>
+</dom-module>
