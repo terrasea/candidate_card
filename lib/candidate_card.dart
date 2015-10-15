@@ -16,6 +16,7 @@ import 'package:polymer_elements/iron_media_query.dart';
 @PolymerRegister('candidate-card', extendsTag: 'div')
 class CandidateCard extends DivElement with PolymerMixin, PolymerBase {
   String _condidateName;
+  String _imageUrl;
 
   @property String get candidateName => _condidateName;
   @reflectable
@@ -23,7 +24,12 @@ class CandidateCard extends DivElement with PolymerMixin, PolymerBase {
     _condidateName = val;
     notifyPath('candidateName', candidateName);
   }
-  @property String imageUrl;
+  @property String get imageUrl => _imageUrl;
+  @reflectable
+  void set imageUrl(val) {
+    _imageUrl = val;
+    notifyPath('imageUrl', _imageUrl);
+  }
   @property String linkUrl;
   @property bool noLink = false;
 
@@ -35,30 +41,31 @@ class CandidateCard extends DivElement with PolymerMixin, PolymerBase {
 
   CandidateCard.created() : super.created() {
     polymerCreated();
-    print('created');
   }
 
   void attached() {
-    print('attached');
     HtmlElement contentChildren = ($['snippet'] as HtmlElement);//.children;
     if(contentChildren.querySelector('#name') != null) {
       List<String> classes = ($['name'] as HtmlElement).classes.map((e) => e.toString()).toList();
-      candidateName = contentChildren.querySelector('#name').text;
-      ($['name'] as HtmlElement).replaceWith(contentChildren.querySelector('#name'));
+      candidateName = contentChildren.querySelector('#name').text.trim();
+//      ($['name'] as HtmlElement).replaceWith(contentChildren.querySelector('#name'));
+
       querySelector('#name').classes.addAll(classes);
+      $['snippet'].querySelector('#name').remove();
     }
 
     if(contentChildren.querySelector('#picture') != null) {
       List<String> classes = ($['picture'] as HtmlElement).classes.map((e) => e.toString()).toList();
-      ($['picture'] as HtmlElement).replaceWith(contentChildren.querySelector('#picture'));
+      imageUrl = contentChildren.querySelector('#picture') is ImageElement ? contentChildren.querySelector('#picture').src : '';
+
+//      ($['picture'] as HtmlElement).replaceWith(contentChildren.querySelector('#picture'));
       querySelector('#picture').classes.addAll(classes);
+      $['snippet'].querySelector('#picture').remove();
     }
-    print(($['snippet'] as HtmlElement).childNodes[0] is Text);
 
   }
 
   void ready() {
-    print('ready');
   }
 
   @reflectable
@@ -77,11 +84,7 @@ class CandidateCard extends DivElement with PolymerMixin, PolymerBase {
       ($['div-picture'] as HtmlElement).classes
         ..add('flex')
       ;
-
-      print('phoneScreenPortrait: ${($['content'] as HtmlElement).classes}');
     }
-
-    print('phoneScreenPortrait: ${phoneScreenPortrait}');
   }
 
 
@@ -96,13 +99,7 @@ class CandidateCard extends DivElement with PolymerMixin, PolymerBase {
       ($['div-picture'] as HtmlElement).classes
         ..add('flex')
       ;
-
-      print('phoneScreenLandscape: ${($['content'] as HtmlElement).classes}');
     }
-
-    print('phoneScreenLandscape: ${($['content'] as HtmlElement).classes}');
-
-    print('phoneScreenLandscape: ${phoneScreenLandscape}');
   }
 
 
@@ -117,10 +114,7 @@ class CandidateCard extends DivElement with PolymerMixin, PolymerBase {
       ($['div-picture'] as HtmlElement).classes
         ..add('flex')
       ;
-      print('phoneScreenPortrait: ${($['content'] as HtmlElement).classes}');
     }
-
-    print('tabletScreenPortrait: ${tabletScreenPortrait}');
   }
 
 
@@ -135,10 +129,7 @@ class CandidateCard extends DivElement with PolymerMixin, PolymerBase {
       ($['div-picture'] as HtmlElement).classes
         ..add('flex')
       ;
-      print('tabletScreenLandscape: ${($['content'] as HtmlElement).classes}');
     }
-
-    print('tabletScreenLandscape: ${tabletScreenLandscape}');
   }
 
   @Observe('desktopScreen')
@@ -152,7 +143,5 @@ class CandidateCard extends DivElement with PolymerMixin, PolymerBase {
         ..remove('flex')
       ;
     }
-
-    print('desktopScreen: ${desktopScreen}');
   }
 }
