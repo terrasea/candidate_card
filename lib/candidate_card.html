@@ -27,7 +27,7 @@
 
             paper-card {
                 width: 100%;
-                /*height: 300px;*/
+                /*height: 400px;*/
                 /*position: inherit;*/
             }
 
@@ -106,9 +106,9 @@
                 <div id="div-picture" class="flex"><img id="picture" src="[[imageUrl]]"></div>
                 <div id="text" class="flex-2 layout vertical">
                     <h1 id="name">{{candidateName}}</h1>
-                    <div id="snippet" class="flex-3"><content></content></div>
+                    <div id="snippet" class="flex-3"><content id="distributed"></content></div>
 
-                    <div>
+                    <div id="footer">
                         <template is="dom-if" if="{{!noLink}}">
 
                                 <paper-button class="flex" on-click="followLink">

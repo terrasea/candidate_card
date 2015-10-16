@@ -44,25 +44,18 @@ class CandidateCard extends DivElement with PolymerMixin, PolymerBase {
   }
 
   void attached() {
-    HtmlElement contentChildren = ($['snippet'] as HtmlElement);//.children;
-    if(contentChildren.querySelector('#name') != null) {
-      List<String> classes = ($['name'] as HtmlElement).classes.map((e) => e.toString()).toList();
-      candidateName = contentChildren.querySelector('#name').text.trim();
-//      ($['name'] as HtmlElement).replaceWith(contentChildren.querySelector('#name'));
+    async(() {
+      PolymerDom contentChildren = new PolymerDom(this);
+      if (contentChildren.querySelector('h1') != null) {
+        candidateName = contentChildren.querySelector('h1').text.trim();
+        contentChildren.querySelector('h1').remove();
+      }
 
-      querySelector('#name').classes.addAll(classes);
-      $['snippet'].querySelector('#name').remove();
-    }
-
-    if(contentChildren.querySelector('#picture') != null) {
-      List<String> classes = ($['picture'] as HtmlElement).classes.map((e) => e.toString()).toList();
-      imageUrl = contentChildren.querySelector('#picture') is ImageElement ? contentChildren.querySelector('#picture').src : '';
-
-//      ($['picture'] as HtmlElement).replaceWith(contentChildren.querySelector('#picture'));
-      querySelector('#picture').classes.addAll(classes);
-      $['snippet'].querySelector('#picture').remove();
-    }
-
+      if (contentChildren.querySelector('img') != null) {
+        imageUrl = contentChildren.querySelector('img') is ImageElement ? contentChildren.querySelector('img').src : '';
+        contentChildren.querySelector('img').remove();
+      }
+    });
   }
 
   void ready() {
