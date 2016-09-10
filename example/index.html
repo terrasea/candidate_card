@@ -44,23 +44,38 @@
             /*font-size: xx-small;*/
         /*}*/
 
+        .picture {
+            width: 115px;
+            height: 115px;
+            vertical-align: middle;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+        }
+
     </style>
 </head>
 <body>
-    <div id="list">
-        <div class="candidate" is="candidate-card" link-url>
-            <h1>James Hurford</h1>
-            <img src="images/passports.jpg">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dumibym jilanef lyrajalis fedo
-        </div>
-        <div class="candidate" is="candidate-card" candidate-name="" image-url="images/passports.jpg" link-url="">
-            <h1>Bill Murray</h1>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hoeri difoemoe datifi cebo mecyfafa batoe lacahipel mode, jadadimiju, bim quil joceh. Libipid misiremajo, pimeje fymamima, min rivim li cajys vo ducique hil, ropep vasoejom feque. Jimale, fime loefi jicajida sidi vis leve bi cutani, lyl. Be boen dibi fi, neca la dub badet befis quadode mup lo lemedequemi tos.
-        </div>
-        <div class="candidate" is="candidate-card" candidate-name="William Shakespeare" image-url="images/passports.jpg" link-url="">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lemel cybi moedi lelybi fepoebu lub mi bape hed sale, boeb moboelo bidoe bafofajepe. Ledem ne, ji li, nola lube, he fac bafa coeledady, der fa boed fi viva. Finofamif que ma cadale nuhapu memajyjoly luvi tydedaqual bafi, pepimehi nodequam paliveda bivu byhem jasab. Jijeboe, la requareny byperoca mer vup, ci sece, sadeb lol.
-        </div>
-    </div>
+    <ul id="list">
+        <li>
+            <div class="candidate" is="candidate-card" link-url>
+                <h1>James Hurford</h1>
+                <img class="picture" src="images/passports.jpg">
+                <span class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dumibym jilanef lyrajalis fedo</span>
+            </div>
+        </li>
+        <li>
+            <div class="candidate" is="candidate-card" candidate-name="" image-url="images/passports.jpg" link-url="">
+                <h1>Bill Murray</h1>
+                <span class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hoeri difoemoe datifi cebo mecyfafa batoe lacahipel mode, jadadimiju, bim quil joceh. Libipid misiremajo, pimeje fymamima, min rivim li cajys vo ducique hil, ropep vasoejom feque. Jimale, fime loefi jicajida sidi vis leve bi cutani, lyl. Be boen dibi fi, neca la dub badet befis quadode mup lo lemedequemi tos.</span>
+            </div>
+        </li>
+        <li>
+            <div class="candidate" is="candidate-card" candidate-name="William Shakespeare" image-url="images/passports.jpg" link-url="">
+                <span class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lemel cybi moedi lelybi fepoebu lub mi bape hed sale, boeb moboelo bidoe bafofajepe. Ledem ne, ji li, nola lube, he fac bafa coeledady, der fa boed fi viva. Finofamif que ma cadale nuhapu memajyjoly luvi tydedaqual bafi, pepimehi nodequam paliveda bivu byhem jasab. Jijeboe, la requareny byperoca mer vup, ci sece, sadeb lol.</span>
+            </div>
+        </li>
+    </ul>
     <script type="application/dart" src="main.dart"></script>
     <script type="application/javascript" src="packages/browser/dart.js"></script>
 </body>

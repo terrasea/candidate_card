@@ -30,8 +30,22 @@ class CandidateCard extends DivElement with PolymerMixin, PolymerBase {
     _imageUrl = val;
     notifyPath('imageUrl', _imageUrl);
   }
+
   @property String linkUrl;
   @property bool noLink = false;
+
+  @Property(
+      notify: true,
+      computed: 'imageAttributeNotUsed(imageUrl)'
+  )
+  bool hasImageContent = true;
+
+
+  @reflectable
+  bool imageAttributeNotUsed(imageUrl) {
+    print(imageUrl);
+    return imageUrl == null;
+  }
 
   @Property(observer: 'phoneScreenPortraitChanged') bool phoneScreenPortrait;
   @Property(observer: 'phoneScreenLandscapeChanged') bool phoneScreenLandscape;
@@ -51,10 +65,10 @@ class CandidateCard extends DivElement with PolymerMixin, PolymerBase {
         contentChildren.querySelector('h1').remove();
       }
 
-      if (contentChildren.querySelector('img') != null) {
-        imageUrl = contentChildren.querySelector('img') is ImageElement ? contentChildren.querySelector('img').src : '';
-        contentChildren.querySelector('img').remove();
-      }
+//      if (contentChildren.querySelector('img') != null) {
+//        imageUrl = contentChildren.querySelector('img') is ImageElement ? contentChildren.querySelector('img').src : '';
+//        contentChildren.querySelector('img').remove();
+//      }
     });
   }
 
